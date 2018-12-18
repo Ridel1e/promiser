@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "strict": true,
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "traceResolution": true,
+    "removeComments": true,
+    "baseUrl": "./src",
+    "target": "es2015",
+    "lib": [ "es6", "dom"],
+    "types": ["./prototype/types"]
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["./node_modules"]
+}
