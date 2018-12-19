@@ -41,3 +41,16 @@ Promise.timer(1000)
   .timeout(2000)
   .do(w => console.log("2d"))
   .catch(e => console.warn("ERROR", e));
+
+
+
+Promise.of(8)
+  .flatMap( num => Promise.timer(5000).map(() => num * num))
+  .timeout(1000)
+  .doOnError(e => console.warn("Fail", e))
+  .onErrorResume(() => Promise.of(77))
+  .then(result => console.log("Result", result))
+  .catch(e => console.warn(e));
+
+
+Promise.of("test").ignore().then(console.log)
