@@ -34,15 +34,19 @@ Promise.prototype.onErrorResume = function <T, TO>(mapper: (v: T) => Promise<TO>
 };
 
 Promise.prototype.ignore = function (): Promise<void> {
-  return Promise.resolve();
+  return this.then(() => Promise.resolve());
 };
 
 Promise.constructor.prototype.of = function <T>(value: T): Promise<T> {
   return Promise.resolve(value)
 };
 
-Promise.constructor.prototype.error = function (error: any): Promise<void> {
+Promise.error = function <T> (error: any): Promise<T> {
   return Promise.reject(error)
+};
+
+Promise.constructor.prototype.never = function (): Promise<void> {
+  return new Promise(() => {})
 };
 
 Promise.constructor.prototype.zip = function <T1, T2, T3, R>(v1: Promise<T1>, v2: Promise<T2>, v3: Promise<T3>, accum: (a1: T1, a2: T2, a3: T3) => R): Promise<R> {
